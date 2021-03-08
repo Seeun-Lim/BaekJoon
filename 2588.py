@@ -1,0 +1,12 @@
+A=int(input())
+B=int(input())
+total=0
+print((B%10)*A)
+total+=(B%10)*A
+B//=10
+print((B%10)*A)
+total+=(B%10)*A*10
+B//=10
+print((B%10)*A)
+total+=(B%10)*A*100
+print(total)
