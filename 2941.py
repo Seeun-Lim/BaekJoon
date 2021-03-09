@@ -1,30 +1,27 @@
 def isExist(group,ch):
-    for i in group:
-        if i==ch:
-            return False
-    return True
+    for i in range(len(group)):
+        if group[i]==ch:
+            return True
+            break
+    return False
 
-def isGroupWord(a):
+def isGroupNum(word):
     group=[]
-    print("isgroup")
-    for i in range(len(a)):
-        if i!=len(a)-1 and a[i]==a[i+1]:
-            print("Okay")
-            continue
+    for i in range(len(word)):
+        if isExist(group,word[i])==False:
+            group.append(word[i])
         else:
-            if isExist(group,a[i])==True:
-                print("detect")
-                return False
-                break
+            if i!=0 and word[i-1] == word[i]:
+                continue
             else:
-                print("Append")
-                group.append(a[i])
+                return False
+    return True
 
 N=int(input())
 count=0
 
 for i in range(N):
     word=input()
-    if isGroupWord(word):
+    if isGroupNum(word)==True:
         count+=1
 print(count)
