@@ -1,27 +1,16 @@
-def isExist(group,ch):
-    for i in range(len(group)):
-        if group[i]==ch:
-            return True
-            break
-    return False
+croatian=['c=','c-','d-','lj','nj','s=','z=']
 
-def isGroupNum(word):
-    group=[]
-    for i in range(len(word)):
-        if isExist(group,word[i])==False:
-            group.append(word[i])
-        else:
-            if i!=0 and word[i-1] == word[i]:
-                continue
-            else:
-                return False
-    return True
+N=input()
 
-N=int(input())
-count=0
+total=0
+i=0
 
-for i in range(N):
-    word=input()
-    if isGroupNum(word)==True:
-        count+=1
-print(count)
+while True:
+    if i<len(N)-3 and N[i]=='d' and N[i+1]=='z' and N[i+2]=='=':
+        total+=1
+        i+=3
+    if i<len(N)-2:
+        for j in croatian:
+
+
+
