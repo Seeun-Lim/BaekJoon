@@ -36,6 +36,7 @@ def bfs(start):
 
 dfs(start-1)
 bfs(start-1)
+
 for i in list(map(lambda x:x+1,dfs_visited)):
     print(i, end=' ')
 print()
