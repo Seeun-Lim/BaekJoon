@@ -19,7 +19,8 @@ def dfs(start):
     visited[start] = no
     no += 1
     for neighbor in graph[start]:
-        if not visited[neighbor]: dfs(neighbor)
+        if not visited[neighbor]:
+            dfs(neighbor)
     
 no = 1
 dfs(start)

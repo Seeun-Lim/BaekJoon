@@ -14,12 +14,13 @@ for i in range(1,V+1):
 
 visited = [0] * (V+1)
 
-def dfs(start):
+def dfs (start):
     global no
     visited[start] = no
     no += 1
     for neighbor in graph[start]:
-        if not visited[neighbor]: dfs(neighbor)
+        if not visited[neighbor]:
+            dfs(neighbor)
     
 no = 1
 dfs(start)
