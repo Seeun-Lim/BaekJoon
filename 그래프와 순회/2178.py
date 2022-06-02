@@ -1,35 +1,22 @@
 import sys
+from collections import deque
 
 N, M = map(int, sys.stdin.readline().strip().split())
+miro = [list(map(int, sys.stdin.readline().strip())) for _ in range(N)]
 
-def findPath(row, col, dst, visited, arr):
-    r_bound = 0 <= row and row < N
-    c_bound = 0 <= col and col < M
-    if not r_bound or not c_bound:
-        return 0
+q = deque([])
+q.append([0, 0])
+dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
+visited = [[0, 0]]
 
-    if arr[row][col] == 0:
-        return 0
+def BFS():
+    while q:
+        row, col = q.popleft()
+        for i in range(4):
+            nx, ny = dx[i] + row, dy[i] + col
+            if 0 <= nx < N and 0 <= ny < M and miro[nx][ny] == 1 and [nx, ny] not in visited:
+                miro[nx][ny] = miro[row][col] + 1
+                q.append([nx, ny])
+    return miro[N-1][M-1]
+print(BFS())
 
-    position = str(row) + ',' + str(col)
-    if position in visited:
-        return 0
-    visited[position] = 0
-
-    size = 1
-    size += findPath(row-1, col, dst, visited, arr)
-    size += findPath(row+1, col, dst, visited, arr)
-    size += findPath(row, col-1, dst, visited, arr)
-    size += findPath(row, col+1, dst, visited, arr)
-
-    return size
-
-
-
-
-
-miro=[ list(sys.stdin.readline().strip()) for _ in range(N)]
-
-dst = str(N-1)+','+str(M-1)
-
-print(findPath(0, 0, dst, {}, miro))
